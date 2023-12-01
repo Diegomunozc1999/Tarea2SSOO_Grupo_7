@@ -1,0 +1,11 @@
+CXX = g++
+CXXFLAGS = -std=c++11 -Wall -pthread `pkg-config --cflags opencv4`
+LDFLAGS = `pkg-config --libs opencv4`
+
+all: image_processing_parallel_thread
+
+image_processing_parallel_thread: image_processing.cpp
+	$(CXX) $(CXXFLAGS) -DPARALLEL_THREAD -o $@ $< $(LDFLAGS)
+
+clean:
+	rm -f image_processing_parallel_thread
