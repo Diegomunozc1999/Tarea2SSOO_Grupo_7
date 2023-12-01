@@ -1,0 +1,11 @@
+CXX = g++
+CXXFLAGS = -std=c++11 -Wall -pthread -fopenmp `pkg-config --cflags opencv4`
+LDFLAGS = -fopenmp `pkg-config --libs opencv4`
+
+all: parallelOpenMPProcessing
+
+parallelOpenMPProcessing: image_processing.cpp
+	$(CXX) $(CXXFLAGS) -DOPENMP_PROCESSING -o $@ $< $(LDFLAGS)
+
+clean:
+	rm -f parallelOpenMPProcessing
